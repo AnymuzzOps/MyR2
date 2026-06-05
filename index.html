@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Servicios contables, tributarios y de recursos humanos para empresas, pymes y emprendedores." />
+  <title>MyR Consultores | Contabilidad, Tributaria y Recursos Humanos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header" id="top">
+    <nav class="navbar container" aria-label="Navegación principal">
+      <a class="brand" href="#inicio" aria-label="MyR Consultores inicio">
+        <span class="brand-mark">MyR</span>
+        <span>Consultores</span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="nav-menu" id="nav-menu">
+        <a href="#inicio">Inicio</a>
+        <a href="#servicios">Qué hacemos</a>
+        <a href="#oficina-virtual">Oficina Virtual</a>
+        <a href="#planes">Planes Contables</a>
+        <a href="#confianza">Confían en MyR</a>
+        <a href="#conocenos">Conócenos</a>
+        <a href="#contacto">Hablemos</a>
+        <a class="nav-cta" href="#contacto">Agendar diagnóstico</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero section" id="inicio" aria-labelledby="hero-title">
+      <div class="hero-overlay"></div>
+      <div class="container hero-grid">
+        <div class="hero-content reveal">
+          <span class="eyebrow">Solo preocúpate de hacer crecer tu negocio</span>
+          <h1 id="hero-title">Optimizamos la contabilidad y gestión de tu empresa</h1>
+          <p class="hero-copy">En MyR Consultores acompañamos a empresas, pymes y emprendedores con soluciones contables, tributarias y de recursos humanos claras, eficientes y personalizadas.</p>
+          <div class="hero-actions" aria-label="Acciones principales">
+            <a class="btn btn-primary" href="#servicios">Ver servicios</a>
+            <a class="btn btn-outline" href="tel:+56000000000">Llámanos</a>
+            <a class="btn btn-whatsapp" href="https://wa.me/56000000000" target="_blank" rel="noopener">Hablar por WhatsApp</a>
+          </div>
+        </div>
+
+        <aside class="contact-card reveal" aria-labelledby="contact-card-title">
+          <h2 id="contact-card-title">Escríbenos para decirte cómo</h2>
+          <form class="lead-form" action="#" method="post">
+            <div class="form-field">
+              <label for="name">Nombre</label>
+              <input type="text" id="name" name="name" autocomplete="name" placeholder="Tu nombre" required />
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" autocomplete="email" placeholder="correo@empresa.cl" required />
+            </div>
+            <div class="form-field">
+              <label for="phone">Teléfono</label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+56 9 0000 0000" required />
+            </div>
+            <div class="form-field">
+              <label for="service">Servicio</label>
+              <select id="service" name="service" required>
+                <option value="" selected disabled>Selecciona un servicio</option>
+                <option>Auditorías</option>
+                <option>Recursos Humanos</option>
+                <option>Contabilidad</option>
+                <option>Consultoría Tributaria</option>
+                <option>Oficina Virtual</option>
+                <option>Otro</option>
+              </select>
+            </div>
+            <button class="btn btn-primary form-submit" type="submit">Contácteme</button>
+            <p class="form-note">No usaremos tus datos para fines publicitarios o spam.</p>
+          </form>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section services" id="servicios" aria-labelledby="services-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow dark">Qué hacemos</span>
+          <h2 id="services-title">Servicios pensados para ordenar, proteger y escalar tu empresa</h2>
+          <p>Integramos experiencia contable, tributaria y laboral para que tomes decisiones con información clara y respaldo profesional.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card reveal">
+            <div class="service-icon" aria-hidden="true">▣</div>
+            <h3>Auditorías</h3>
+            <p>Evaluamos procesos e información financiera para fortalecer la confiabilidad, el control y la toma de decisiones.</p>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon" aria-hidden="true">◈</div>
+            <h3>Recursos Humanos</h3>
+            <p>Apoyamos la gestión laboral de tu empresa, desde contratos y remuneraciones hasta cumplimiento normativo.</p>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon" aria-hidden="true">▰</div>
+            <h3>Contabilidad</h3>
+            <p>Ordenamos y gestionamos tu información contable para que tu negocio crezca con claridad y respaldo.</p>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon" aria-hidden="true">◇</div>
+            <h3>Consultoría Tributaria</h3>
+            <p>Asesoramos en planificación y cumplimiento tributario para empresas que buscan operar con seguridad.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section virtual-office" id="oficina-virtual" aria-labelledby="virtual-title">
+      <div class="container split-grid">
+        <div class="office-visual reveal" aria-label="Espacio de oficina virtual profesional">
+          <div class="office-card office-card-main">
+            <span>Dirección comercial</span>
+            <strong>Imagen ejecutiva sin costos fijos altos</strong>
+          </div>
+          <div class="office-card office-card-floating">
+            <span>Soporte flexible</span>
+            <strong>Para emprendedores y empresas</strong>
+          </div>
+        </div>
+        <div class="split-content reveal">
+          <span class="eyebrow dark">Solución flexible</span>
+          <h2 id="virtual-title">Oficina Virtual</h2>
+          <p>Una oficina virtual entrega flexibilidad, ahorro de costos e imagen profesional, permitiendo que emprendedores y empresas gestionen su negocio desde cualquier lugar.</p>
+          <ul class="benefit-list">
+            <li>Dirección comercial</li>
+            <li>Imagen profesional para tu empresa</li>
+            <li>Reducción de costos operativos</li>
+            <li>Mayor flexibilidad para trabajar</li>
+            <li>Soporte administrativo según necesidad</li>
+          </ul>
+          <a class="btn btn-primary" href="#contacto">Consultar Oficina Virtual</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section plans" id="planes" aria-labelledby="plans-title">
+      <div class="container">
+        <div class="section-heading section-heading-light reveal">
+          <span class="eyebrow">Planes Contables</span>
+          <h2 id="plans-title">Planes Contables</h2>
+          <p>Para empresas y emprendedores</p>
+        </div>
+        <div class="plans-grid">
+          <article class="plan-card reveal">
+            <h3>Plan Emprendedor</h3>
+            <p class="price">Desde $60.000</p>
+            <ul>
+              <li>Contabilidad</li>
+              <li>Impuestos mensuales F29</li>
+              <li>Asesoría online y/o presencial</li>
+            </ul>
+            <a class="btn btn-secondary" href="#contacto">Solicitar plan</a>
+          </article>
+          <article class="plan-card featured reveal">
+            <span class="badge">Más solicitado</span>
+            <h3>Plan Micro Pyme</h3>
+            <p class="price">Desde $90.000</p>
+            <ul>
+              <li>Contabilidad</li>
+              <li>Impuestos mensuales F29</li>
+              <li>Asesoría online y/o presencial</li>
+              <li>Proceso de remuneraciones hasta 3 trabajadores</li>
+            </ul>
+            <a class="btn btn-primary" href="#contacto">Solicitar plan</a>
+          </article>
+          <article class="plan-card reveal">
+            <h3>Plan Empresa</h3>
+            <p class="price">Desde $200.000</p>
+            <ul>
+              <li>Contabilidad</li>
+              <li>Impuestos mensuales F29</li>
+              <li>Proceso de remuneraciones</li>
+              <li>Conciliación bancaria</li>
+              <li>Acompañamiento contable y tributario</li>
+            </ul>
+            <a class="btn btn-secondary" href="#contacto">Solicitar plan</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section trust" id="confianza" aria-labelledby="trust-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow dark">Resultados</span>
+          <h2 id="trust-title">Confían en MyR</h2>
+        </div>
+        <div class="metrics-grid">
+          <div class="metric-card reveal">
+            <span class="metric-number" data-count="200">+0</span>
+            <p>Balances anuales</p>
+          </div>
+          <div class="metric-card reveal">
+            <span class="metric-number" data-count="400">+0</span>
+            <p>Clientes felices</p>
+          </div>
+          <div class="metric-card reveal">
+            <span class="metric-number" data-count="250">+0</span>
+            <p>Asesorías realizadas</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about" id="conocenos" aria-labelledby="about-title">
+      <div class="container split-grid about-grid">
+        <div class="split-content reveal">
+          <span class="eyebrow dark">Conócenos</span>
+          <h2 id="about-title">Quiénes Somos</h2>
+          <p>Somos un equipo multidisciplinario de profesionales enfocados en entregar un servicio integral, cercano y eficiente. En MyR Consultores trabajamos para ser un partner estratégico para cada cliente, entregando soluciones contables, tributarias y de recursos humanos con claridad, compromiso y atención personalizada.</p>
+        </div>
+        <div class="pillars reveal" aria-label="Pilares de MyR Consultores">
+          <div><strong>Eficiencia</strong><span>Procesos claros y gestión ordenada.</span></div>
+          <div><strong>Confianza</strong><span>Información precisa y asesoría responsable.</span></div>
+          <div><strong>Acompañamiento</strong><span>Cercanía en cada etapa de tu negocio.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section team" aria-labelledby="team-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow dark">Equipo</span>
+          <h2 id="team-title">Profesionales que acompañan tu gestión</h2>
+          <p>Roles editables para incorporar los nombres reales del equipo cuando estén disponibles.</p>
+        </div>
+        <div class="team-grid">
+          <article class="team-card reveal">
+            <div class="avatar">SD</div>
+            <h3>Nombre editable</h3>
+            <p>Socio/a Director/a — Área Contable</p>
+          </article>
+          <article class="team-card reveal">
+            <div class="avatar">CT</div>
+            <h3>Nombre editable</h3>
+            <p>Consultor/a Tributario/a</p>
+          </article>
+          <article class="team-card reveal">
+            <div class="avatar">RH</div>
+            <h3>Nombre editable</h3>
+            <p>Analista Recursos Humanos</p>
+          </article>
+          <article class="team-card reveal">
+            <div class="avatar">AC</div>
+            <h3>Nombre editable</h3>
+            <p>Asistente Contable</p>
+          </article>
+          <article class="team-card reveal">
+            <div class="avatar">PX</div>
+            <h3>Nombre editable</h3>
+            <p>Partner RRHH / TAX</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contacto" aria-labelledby="contact-title">
+      <div class="container contact-grid">
+        <div class="map-card reveal" aria-label="Mapa de ubicación">
+          <div class="map-placeholder">
+            <span>Mapa / ubicación</span>
+            <strong>Agregar dirección</strong>
+          </div>
+        </div>
+        <div class="contact-info reveal">
+          <span class="eyebrow dark">Hablemos</span>
+          <h2 id="contact-title">Agenda una conversación con MyR</h2>
+          <p>Cuéntanos qué necesita tu empresa y coordinaremos una orientación inicial para definir el mejor camino.</p>
+          <address>
+            <span><strong>Dirección:</strong> Agregar dirección</span>
+            <span><strong>Teléfono:</strong> Agregar teléfono</span>
+            <span><strong>Email:</strong> <a href="mailto:contacto@myrconsultores.cl">contacto@myrconsultores.cl</a></span>
+            <span><strong>Instagram:</strong> Agregar Instagram</span>
+            <span><strong>Facebook:</strong> Agregar Facebook</span>
+          </address>
+          <div class="contact-actions">
+            <a class="btn btn-primary" href="tel:+56000000000">Llamar ahora</a>
+            <a class="btn btn-secondary" href="mailto:contacto@myrconsultores.cl">Enviar correo</a>
+            <a class="btn btn-whatsapp" href="https://wa.me/56000000000" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <a class="whatsapp-float" href="https://wa.me/56000000000" target="_blank" rel="noopener" aria-label="Hablar por WhatsApp">
+    <span aria-hidden="true">☎</span>
+    <small>¿Te ayudo?</small>
+  </a>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>MyR Consultores © 2026. Todos los derechos reservados.</p>
+      <nav aria-label="Enlaces rápidos del footer">
+        <a href="#inicio">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#planes">Planes</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

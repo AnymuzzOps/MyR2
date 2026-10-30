@@ -793,6 +793,12 @@ address strong {
   background: rgba(255, 255, 255, 0.16);
 }
 
+.whatsapp-icon {
+  width: 25px;
+  height: 25px;
+  flex: 0 0 auto;
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(22px);

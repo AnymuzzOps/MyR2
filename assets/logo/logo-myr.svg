@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-labelledby="title">
+  <title id="title">MyR Consultores</title>
+  <defs>
+    <linearGradient id="gold" x1="12" y1="12" x2="84" y2="84" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f0d79a"/>
+      <stop offset="1" stop-color="#c9a461"/>
+    </linearGradient>
+  </defs>
+  <path d="M15 69V27h10l23 27 23-27h10v42H70V43L48 68 26 43v26H15Z" fill="url(#gold)"/>
+  <path d="M72 20h12v12" fill="none" stroke="#39b7b0" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

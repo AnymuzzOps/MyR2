@@ -685,11 +685,40 @@ select:focus {
 }
 
 .map-card {
+  position: relative;
   min-height: 480px;
   padding: 18px;
   border-radius: 32px;
   background: var(--white);
   box-shadow: var(--shadow);
+}
+
+.location-map {
+  display: block;
+  width: 100%;
+  min-height: 444px;
+  height: 100%;
+  border: 0;
+  border-radius: 24px;
+}
+
+.map-link {
+  position: absolute;
+  right: 34px;
+  bottom: 34px;
+  z-index: 2;
+  padding: 11px 15px;
+  border-radius: 6px;
+  color: var(--white);
+  background: var(--navy);
+  box-shadow: 0 10px 24px rgba(4, 31, 42, 0.22);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.map-link:hover,
+.map-link:focus-visible {
+  background: var(--teal);
 }
 
 .map-placeholder {
@@ -1062,6 +1091,8 @@ address { gap: 6px; font-size: 11px; }
   .avatar { grid-row: span 2; width: 42px; height: 42px; margin: 0; }
   .team-card h3, .team-card p { margin: 0; }
   .map-card, .map-placeholder { min-height: 340px; }
+  .location-map { min-height: 340px; border-radius: 12px; }
+  .map-link { right: 14px; bottom: 14px; }
   .contact-actions { grid-template-columns: repeat(2,1fr); }
   .contact-actions .btn:last-child { grid-column: 1 / -1; }
 
@@ -1440,6 +1471,11 @@ address { gap: 6px; font-size: 11px; }
   .map-card,
   .map-placeholder {
     min-height: 460px;
+  }
+
+  .location-map {
+    min-height: 460px;
+    border-radius: 12px;
   }
 
   .map-placeholder span {

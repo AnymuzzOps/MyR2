@@ -4,6 +4,7 @@ const navLinks = document.querySelectorAll('.nav-menu a');
 
 const closeMenu = () => {
   navToggle.setAttribute('aria-expanded', 'false');
+  navToggle.setAttribute('aria-label', 'Abrir menú');
   navMenu.classList.remove('is-open');
   document.body.classList.remove('nav-open');
 };
@@ -11,11 +12,25 @@ const closeMenu = () => {
 navToggle.addEventListener('click', () => {
   const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
   navToggle.setAttribute('aria-expanded', String(!isOpen));
+  navToggle.setAttribute('aria-label', isOpen ? 'Abrir menú' : 'Cerrar menú');
   navMenu.classList.toggle('is-open', !isOpen);
   document.body.classList.toggle('nav-open', !isOpen);
 });
 
 navLinks.forEach((link) => link.addEventListener('click', closeMenu));
+
+document.addEventListener('click', (event) => {
+  if (document.body.classList.contains('nav-open') && !event.target.closest('.navbar')) {
+    closeMenu();
+  }
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && document.body.classList.contains('nav-open')) {
+    closeMenu();
+    navToggle.focus();
+  }
+});
 
 const revealObserver = new IntersectionObserver(
   (entries) => {

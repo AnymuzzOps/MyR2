@@ -1064,4 +1064,111 @@ address { gap: 6px; font-size: 11px; }
   .map-card, .map-placeholder { min-height: 340px; }
   .contact-actions { grid-template-columns: repeat(2,1fr); }
   .contact-actions .btn:last-child { grid-column: 1 / -1; }
+
+  /* Mobile navigation: a compact, legible panel instead of an oversized overlay. */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: var(--header-height) 0 0;
+    z-index: 998;
+    background: rgba(2, 24, 31, 0.58);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    backdrop-filter: blur(3px);
+  }
+
+  body.nav-open::before {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .site-header {
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .navbar {
+    min-height: var(--header-height);
+  }
+
+  .brand {
+    gap: 9px;
+    font-size: 12px;
+  }
+
+  .brand-mark {
+    border-radius: 8px;
+    box-shadow: none;
+  }
+
+  .nav-toggle {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-color: rgba(255, 255, 255, 0.28);
+    border-radius: 10px;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .nav-toggle[aria-expanded="true"] {
+    border-color: rgba(221, 181, 91, 0.75);
+    background: rgba(221, 181, 91, 0.1);
+  }
+
+  .nav-menu {
+    top: calc(var(--header-height) + 10px);
+    right: 15px;
+    left: 15px;
+    gap: 0;
+    max-height: calc(100dvh - var(--header-height) - 25px);
+    padding: 8px 14px 14px;
+    overflow-y: auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    background: #062f3a;
+    box-shadow: 0 22px 55px rgba(0, 18, 24, 0.38);
+    transform: translateY(-8px) scale(0.98);
+    transform-origin: top center;
+  }
+
+  .nav-menu.is-open {
+    transform: translateY(0) scale(1);
+  }
+
+  .nav-menu a {
+    position: relative;
+    padding: 13px 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 0;
+    color: rgba(255, 255, 255, 0.86);
+    font-size: 11px;
+    line-height: 1.25;
+  }
+
+  .nav-menu a:not(.nav-cta)::after {
+    content: "";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    width: 5px;
+    height: 5px;
+    border-top: 1px solid rgba(255, 255, 255, 0.45);
+    border-right: 1px solid rgba(255, 255, 255, 0.45);
+    transform: translateY(-50%) rotate(45deg);
+  }
+
+  .nav-menu a:hover,
+  .nav-menu a:focus-visible {
+    color: #f0d79a;
+    background: transparent;
+  }
+
+  .nav-menu .nav-cta {
+    margin-top: 12px;
+    padding: 12px 14px;
+    border: 1px solid rgba(221, 181, 91, 0.72);
+    border-radius: 9px;
+    text-align: center;
+    background: rgba(221, 181, 91, 0.08);
+  }
 }

@@ -112,6 +112,16 @@ p {
   flex-shrink: 0;
 }
 
+.brand-name {
+  color: #18c7c1;
+  font-family: "Brigade Medium", "Brigade", Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
 .brand-logo {
   display: block;
   width: 96px;
@@ -1126,6 +1136,10 @@ address { gap: 6px; font-size: 11px; }
     font-size: 12px;
   }
 
+  .brand-name {
+    font-size: 0.95rem;
+  }
+
   .brand-logo {
     border-radius: 0;
   }
@@ -1232,6 +1246,10 @@ address { gap: 6px; font-size: 11px; }
 
   .brand {
     font-size: 15px;
+  }
+
+  .brand-name {
+    font-size: 1.4rem;
   }
 
   .brand-logo {

@@ -109,12 +109,14 @@ p {
   font-weight: 800;
   letter-spacing: -0.02em;
   font-size: 1.08rem;
+  flex-shrink: 0;
 }
 
 .brand-logo {
   display: block;
   width: 68px;
   height: 68px;
+  flex: 0 0 68px;
   border-radius: 16px;
   object-fit: contain;
   box-shadow: 0 12px 30px rgba(201, 164, 97, 0.28);
@@ -1065,7 +1067,7 @@ address { gap: 6px; font-size: 11px; }
   .section { padding: 58px 0; }
   h1 { font-size: 34px; }
   h2 { font-size: 25px; }
-  .brand-logo { width: 62px; height: 62px; }
+  .brand-logo { width: 62px; height: 62px; flex-basis: 62px; }
   .hero { min-height: 0; padding: calc(var(--header-height) + 40px) 0 35px; background-position: 58% center; }
   .hero-grid { grid-template-columns: 1fr; gap: 26px; }
   .hero-copy { font-size: 12px; }
@@ -1235,6 +1237,7 @@ address { gap: 6px; font-size: 11px; }
   .brand-logo {
     width: 76px;
     height: 76px;
+    flex-basis: 76px;
     font-size: 11px;
   }
 

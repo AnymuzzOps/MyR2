@@ -116,7 +116,7 @@ p {
   color: #18c7c1;
   font-family: "Brigade Medium", "Brigade", Georgia, serif;
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.01em;
   line-height: 1;
   white-space: nowrap;
@@ -1555,4 +1555,10 @@ address { gap: 6px; font-size: 11px; }
   width: 24px;
   height: 24px;
   flex: 0 0 24px;
+}
+
+/* Slightly stronger outlines improve card separation on light backgrounds. */
+.service-card,
+.metric-card {
+  border: 1px solid rgba(8, 47, 61, 0.18);
 }

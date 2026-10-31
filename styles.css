@@ -1549,3 +1549,10 @@ address { gap: 6px; font-size: 11px; }
   color: var(--white) !important;
   background: #178b89;
 }
+
+.service-icon svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+}

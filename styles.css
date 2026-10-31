@@ -1521,3 +1521,37 @@ address { gap: 6px; font-size: 11px; }
     font-size: 11px;
   }
 }
+
+/* Brand color refinements: a calmer teal treatment for the logo and key actions. */
+.brand-logo {
+  filter: brightness(0) saturate(100%) invert(54%) sepia(27%) saturate(1223%) hue-rotate(130deg) brightness(91%) contrast(86%);
+}
+
+.brand-name {
+  color: var(--teal);
+}
+
+.nav-cta,
+.contact-card .btn-primary,
+.map-link {
+  border-color: rgba(31, 166, 164, 0.72);
+  color: var(--white) !important;
+  background: var(--teal);
+  box-shadow: 0 12px 28px rgba(31, 166, 164, 0.2);
+}
+
+.nav-cta:hover,
+.nav-cta:focus-visible,
+.contact-card .btn-primary:hover,
+.contact-card .btn-primary:focus-visible,
+.map-link:hover,
+.map-link:focus-visible {
+  color: var(--white) !important;
+  background: #178b89;
+}
+
+@media (max-width: 680px) {
+  .brand-logo {
+    opacity: 0.88;
+  }
+}

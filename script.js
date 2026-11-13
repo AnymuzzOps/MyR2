@@ -54,7 +54,7 @@ const animateCounter = (counter) => {
   const update = (now) => {
     const progress = Math.min((now - start) / duration, 1);
     const eased = 1 - Math.pow(1 - progress, 3);
-    counter.textContent = `+${Math.floor(target * eased)}`;
+    counter.textContent = String(Math.floor(target * eased));
 
     if (progress < 1) {
       requestAnimationFrame(update);

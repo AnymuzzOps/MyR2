@@ -1665,7 +1665,7 @@ label, .btn { font-weight: 600; }
   margin-inline: auto;
   padding: 24px 0;
   border-radius: 16px;
-  background: #F2F5F6;
+  background: var(--white);
   color: #0B2F3D;
   overflow: hidden;
 }

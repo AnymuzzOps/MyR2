@@ -1633,3 +1633,36 @@ address { gap: 6px; font-size: 11px; }
   .team-hierarchy .team-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; justify-items: center; }
   .team-hierarchy .team-card { max-width: 320px; }
 }
+
+/* Results form one continuous band; rules are scoped to this section. */
+.trust .metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  padding: 36px 0;
+  border-radius: 18px;
+  background: var(--navy);
+  overflow: hidden;
+}
+.trust .metric-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 24px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.trust .metric-card + .metric-card { border-left: 1px solid rgba(255, 255, 255, 0.18); }
+.trust .metric-card:hover { transform: none; box-shadow: none; }
+.trust .metric-icon { flex-shrink: 0; width: 48px; height: 48px; margin-bottom: 16px; color: var(--teal); }
+.trust .metric-number { margin: 0; color: var(--white); font-size: clamp(48px, 4vw, 68px); line-height: 1.15; font-weight: 800; }
+.trust .metric-card p { margin: 14px 0 0; color: var(--white); font-size: 18px; line-height: 1.5; font-weight: 500; }
+@media (max-width: 680px) {
+  .trust .metrics-grid { grid-template-columns: 1fr; padding: 8px 24px; }
+  .trust .metric-card { padding: 28px 8px; }
+  .trust .metric-card + .metric-card { border-left: 0; border-top: 1px solid rgba(255, 255, 255, 0.18); }
+  .trust .metric-number { font-size: 48px; }
+  .trust .metric-card p { font-size: 17px; }
+}

@@ -79,15 +79,40 @@ const counterObserver = new IntersectionObserver(
 document.querySelectorAll('.metric-number').forEach((counter) => counterObserver.observe(counter));
 
 const leadForm = document.querySelector('.lead-form');
-leadForm.addEventListener('submit', (event) => {
+leadForm.addEventListener('submit', async (event) => {
   event.preventDefault();
-  const submitButton = leadForm.querySelector('.form-submit');
-  submitButton.textContent = 'Mensaje listo para enviar';
+  if (leadForm.getAttribute('aria-busy') === 'true' || !leadForm.reportValidity()) return;
 
-  setTimeout(() => {
-    submitButton.textContent = 'Contácteme';
+  const submitButton = leadForm.querySelector('.form-submit');
+  const status = leadForm.querySelector('.form-status');
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 20000);
+  submitButton.disabled = true;
+  leadForm.setAttribute('aria-busy', 'true');
+  status.hidden = false;
+  status.textContent = 'Enviando tu consulta…';
+
+  try {
+    const response = await fetch(leadForm.action, {
+      method: 'POST',
+      body: new FormData(leadForm),
+      headers: { Accept: 'application/json' },
+      signal: controller.signal
+    });
+    const result = await response.json();
+    if (!response.ok || result.ok !== true) throw new Error('Submission not confirmed');
+
+    status.textContent = 'Recibimos tu consulta';
     leadForm.reset();
-  }, 2200);
+  } catch (error) {
+    status.textContent = error.name === 'AbortError'
+      ? 'No pudimos confirmar la recepción a tiempo. Tus datos se conservaron; puedes reintentar.'
+      : 'No pudimos enviar tu consulta. Tus datos se conservaron; vuelve a intentarlo.';
+  } finally {
+    clearTimeout(timeout);
+    submitButton.disabled = false;
+    leadForm.removeAttribute('aria-busy');
+  }
 });
 
 const officeCarousel = document.querySelector('.office-carousel');

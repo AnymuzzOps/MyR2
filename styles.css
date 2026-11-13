@@ -1601,9 +1601,10 @@ address { gap: 6px; font-size: 11px; }
 .team .section-heading { margin-inline: auto; text-align: center; }
 .team #team-title { margin-inline: auto; }
 .team-hierarchy { display: grid; gap: 32px; max-width: 1120px; margin-inline: auto; }
-.team-hierarchy .team-grid { display: flex; justify-content: center; align-items: stretch; gap: 32px; width: 100%; max-width: none; margin: 0; }
+.team-hierarchy .team-grid { display: grid; align-items: stretch; gap: 32px; width: 100%; max-width: none; margin: 0 auto; }
+.team-hierarchy .team-leadership { grid-template-columns: repeat(2, minmax(0, 1fr)); width: calc((100% - 32px) / 2); }
+.team-hierarchy .team-members { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .team-hierarchy .team-card {
-  flex: 0 0 calc((100% - 96px) / 4);
   min-width: 0;
   display: flex;
   flex-direction: column;
@@ -1622,16 +1623,13 @@ address { gap: 6px; font-size: 11px; }
 .team-hierarchy .team-card p { margin: 0; max-width: 100%; color: #405760; font-size: 16px; line-height: 1.6; font-weight: 500; }
 .team-hierarchy .team-leadership p { color: #176e70; font-weight: 700; }
 @media (max-width: 680px) {
-  .team .team-hierarchy { gap: 16px; }
-  .team-hierarchy .team-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-  .team-hierarchy .team-card { width: 100%; max-width: none; padding: 8px; }
+  .team .team-hierarchy { gap: 24px; }
+  .team-hierarchy .team-leadership,
+  .team-hierarchy .team-members { width: 100%; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 12px; row-gap: 16px; }
+  .team-hierarchy .team-card { width: 100%; max-width: none; padding: 8px 4px; }
   .team-hierarchy .team-card .avatar { width: 64px; height: 64px; margin-bottom: 12px; }
-  .team-hierarchy .team-card h3 { font-size: 16px; margin-bottom: 4px; }
-  .team-hierarchy .team-card p { font-size: 15px; line-height: 1.5; overflow-wrap: break-word; }
-}
-@media (max-width: 479px) {
-  .team-hierarchy .team-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; justify-items: center; }
-  .team-hierarchy .team-card { max-width: 320px; }
+  .team-hierarchy .team-card h3 { max-width: 100%; font-size: 16px; margin-bottom: 4px; overflow-wrap: anywhere; }
+  .team-hierarchy .team-card p { font-size: 15px; line-height: 1.5; overflow-wrap: anywhere; }
 }
 
 /* Results form one continuous band; rules are scoped to this section. */

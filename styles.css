@@ -1600,10 +1600,10 @@ address { gap: 6px; font-size: 11px; }
 .team { background: #f4f8f9; }
 .team .section-heading { margin-inline: auto; text-align: center; }
 .team #team-title { margin-inline: auto; }
-.team-hierarchy { display: grid; gap: 32px; max-width: 904px; margin-inline: auto; }
+.team-hierarchy { display: grid; gap: 32px; max-width: 1120px; margin-inline: auto; }
 .team-hierarchy .team-grid { display: flex; justify-content: center; align-items: stretch; gap: 32px; width: 100%; max-width: none; margin: 0; }
 .team-hierarchy .team-card {
-  flex: 0 0 calc((100% - 64px) / 3);
+  flex: 0 0 calc((100% - 96px) / 4);
   min-width: 0;
   display: flex;
   flex-direction: column;
@@ -1622,8 +1622,14 @@ address { gap: 6px; font-size: 11px; }
 .team-hierarchy .team-card p { margin: 0; max-width: 100%; color: #405760; font-size: 16px; line-height: 1.6; font-weight: 500; }
 .team-hierarchy .team-leadership p { color: #176e70; font-weight: 700; }
 @media (max-width: 680px) {
-  .team-hierarchy { gap: 24px; }
-  .team-hierarchy .team-grid { flex-direction: column; align-items: center; gap: 24px; }
-  .team-hierarchy .team-card { flex: none; width: 100%; max-width: 320px; padding: 16px 12px; }
-  .team-hierarchy .team-card .avatar { width: 128px; height: 128px; }
+  .team .team-hierarchy { gap: 16px; }
+  .team-hierarchy .team-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .team-hierarchy .team-card { width: 100%; max-width: none; padding: 8px; }
+  .team-hierarchy .team-card .avatar { width: 64px; height: 64px; margin-bottom: 12px; }
+  .team-hierarchy .team-card h3 { font-size: 16px; margin-bottom: 4px; }
+  .team-hierarchy .team-card p { font-size: 15px; line-height: 1.5; overflow-wrap: break-word; }
+}
+@media (max-width: 479px) {
+  .team-hierarchy .team-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; justify-items: center; }
+  .team-hierarchy .team-card { max-width: 320px; }
 }

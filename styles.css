@@ -1562,3 +1562,26 @@ address { gap: 6px; font-size: 11px; }
 .metric-card {
   border: 1px solid rgba(8, 47, 61, 0.18);
 }
+
+/* Team portraits share a consistent crop without stretching the source images. */
+.team-card .avatar {
+  width: 112px;
+  height: 112px;
+}
+
+.team-photo {
+  display: block;
+  object-fit: cover;
+  object-position: center 25%;
+}
+
+@media (max-width: 680px) {
+  .team-card {
+    grid-template-columns: 72px minmax(0, 1fr);
+  }
+
+  .team-card .avatar {
+    width: 72px;
+    height: 72px;
+  }
+}

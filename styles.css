@@ -1690,3 +1690,7 @@ label, .btn { font-weight: 600; }
   .trust .metric-card + .metric-card { border-left: 0; border-top: 1px solid #D3DFE2; }
   .trust .metric-number { font-size: 28px; }
 }
+
+/* Inline feedback for the contact form without changing its layout. */
+.lead-form .form-status { margin: 0; color: var(--navy-900); font-size: 14px; line-height: 1.5; }
+.lead-form .form-submit:disabled { opacity: 0.65; cursor: wait; transform: none; }

@@ -148,15 +148,29 @@
 
     <section class="section virtual-office" id="oficina-virtual" aria-labelledby="virtual-title">
       <div class="container split-grid">
-        <div class="office-visual reveal" aria-label="Espacio de oficina virtual profesional">
-          <div class="office-card office-card-main">
-            <span>Dirección comercial</span>
-            <strong>Imagen ejecutiva sin costos fijos altos</strong>
+        <div class="office-visual office-carousel reveal" role="region" aria-roledescription="carrusel" aria-label="Fotos de Oficina Virtual">
+          <div class="office-slides">
+            <div class="office-slide is-active" role="group" aria-roledescription="diapositiva" aria-label="1 de 3" aria-hidden="false">
+              <img src="./assets/oficina-virtual/oficina-virtual-01.webp" alt="Oficina Virtual — fotografía 1" width="1200" height="900" loading="lazy" decoding="async" draggable="false" />
+            </div>
+            <div class="office-slide" role="group" aria-roledescription="diapositiva" aria-label="2 de 3" aria-hidden="true">
+              <img src="./assets/oficina-virtual/oficina-virtual-02.webp" alt="Oficina Virtual — fotografía 2" width="1200" height="900" loading="lazy" decoding="async" draggable="false" />
+            </div>
+            <div class="office-slide" role="group" aria-roledescription="diapositiva" aria-label="3 de 3" aria-hidden="true">
+              <img src="./assets/oficina-virtual/oficina-virtual-03.webp" alt="Oficina Virtual — fotografía 3" width="1200" height="900" loading="lazy" decoding="async" draggable="false" />
+            </div>
           </div>
-          <div class="office-card office-card-floating">
-            <span>Soporte flexible</span>
-            <strong>Para emprendedores y empresas</strong>
+          <button class="office-arrow office-prev" type="button" aria-label="Foto anterior">‹</button>
+          <button class="office-arrow office-next" type="button" aria-label="Foto siguiente">›</button>
+          <div class="office-controls">
+            <div class="office-dots" role="group" aria-label="Seleccionar fotografía">
+              <button class="office-dot" type="button" aria-label="Mostrar foto 1" aria-current="true"></button>
+              <button class="office-dot" type="button" aria-label="Mostrar foto 2" aria-current="false"></button>
+              <button class="office-dot" type="button" aria-label="Mostrar foto 3" aria-current="false"></button>
+            </div>
+            <button class="office-pause" type="button" aria-label="Pausar cambio automático">Pausar</button>
           </div>
+          <span class="office-status visually-hidden" aria-live="polite" aria-atomic="true"></span>
         </div>
         <div class="split-content reveal">
           <span class="eyebrow dark">Solución flexible</span>

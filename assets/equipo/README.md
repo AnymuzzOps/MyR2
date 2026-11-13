@@ -4,13 +4,13 @@ Sube las fotos a esta carpeta usando exactamente estos nombres:
 
 | Persona | Archivo |
 | --- | --- |
-| Daniela Mardones | `daniela-mardones.jpg` |
+| Daniela Mardones | `daniela-mardones.png` |
 | Gustavo Morales | `gustavo-morales.jpg` |
-| Johanna Moya | `johanna-moya.jpg` |
-| Estefany Berrios | `estefany-berrios.jpg` |
-| Fabiola Ramírez | `fabiola-ramirez.jpg` |
+| Johanna Moya | `johanna-moya.png` |
+| Estefany Berrios | `estefany-berrios.png` |
+| Fabiola Ramírez | `fabiola-ramirez.png` |
 
-Formato: JPEG real (`.jpg`), nombres en minúsculas, sin tildes ni espacios y separados por guiones. No basta con renombrar una imagen PNG a `.jpg`: expórtala como JPEG.
+Formato: PNG (`.png`) para Daniela, Johanna, Estefany y Fabiola; JPEG (`.jpg`) para Gustavo. Usa nombres en minúsculas, sin tildes ni espacios y separados por guiones. El formato real de cada imagen debe coincidir con su extensión.
 
 Recomendado: foto cuadrada de 800 × 800 píxeles, con el rostro centrado y un encuadre similar para todo el equipo.
 

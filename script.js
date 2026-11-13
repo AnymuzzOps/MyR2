@@ -93,74 +93,23 @@ leadForm.addEventListener('submit', (event) => {
 const officeCarousel = document.querySelector('.office-carousel');
 if (officeCarousel) {
   const slides = [...officeCarousel.querySelectorAll('.office-slide')];
-  const dots = [...officeCarousel.querySelectorAll('.office-dot')];
-  const pauseButton = officeCarousel.querySelector('.office-pause');
-  const status = officeCarousel.querySelector('.office-status');
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let index = 0;
-  let paused = false;
-  let hovered = false;
-  let focused = false;
   let timer;
-  let touchStart = null;
 
   const schedule = () => {
     clearInterval(timer);
-    if (!paused && !hovered && !focused && !document.hidden && !motion.matches) {
-      timer = setInterval(() => show(index + 1), 5000);
+    if (!document.hidden && !motion.matches && slides.length > 1) {
+      timer = setInterval(() => {
+        index = (index + 1) % slides.length;
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('is-active', i === index);
+          slide.setAttribute('aria-hidden', String(i !== index));
+        });
+      }, 5000);
     }
   };
-  const show = (next, manual = false) => {
-    index = (next + slides.length) % slides.length;
-    slides.forEach((slide, i) => {
-      slide.classList.toggle('is-active', i === index);
-      slide.setAttribute('aria-hidden', String(i !== index));
-      dots[i].setAttribute('aria-current', String(i === index));
-    });
-    if (manual) status.textContent = `Fotografía ${index + 1} de ${slides.length}`;
-  };
-  const navigate = (next) => { show(next, true); schedule(); };
-  officeCarousel.querySelector('.office-prev').addEventListener('click', () => navigate(index - 1));
-  officeCarousel.querySelector('.office-next').addEventListener('click', () => navigate(index + 1));
-  dots.forEach((dot, i) => dot.addEventListener('click', () => navigate(i)));
-  pauseButton.addEventListener('click', () => {
-    paused = !paused;
-    pauseButton.textContent = paused ? 'Reanudar' : 'Pausar';
-    pauseButton.setAttribute('aria-label', paused ? 'Reanudar cambio automático' : 'Pausar cambio automático');
-    schedule();
-  });
-  officeCarousel.addEventListener('mouseenter', () => { hovered = true; schedule(); });
-  officeCarousel.addEventListener('mouseleave', () => { hovered = false; schedule(); });
-  officeCarousel.addEventListener('focusin', () => { focused = true; schedule(); });
-  officeCarousel.addEventListener('focusout', (event) => {
-    focused = officeCarousel.contains(event.relatedTarget);
-    schedule();
-  });
-  officeCarousel.addEventListener('keydown', (event) => {
-    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-      event.preventDefault();
-      navigate(index + (event.key === 'ArrowRight' ? 1 : -1));
-    }
-  });
-  officeCarousel.addEventListener('touchstart', (event) => {
-    touchStart = event.touches.length === 1 ? { x: event.touches[0].clientX, y: event.touches[0].clientY } : null;
-    clearInterval(timer);
-  }, { passive: true });
-  officeCarousel.addEventListener('touchend', (event) => {
-    if (touchStart && event.changedTouches.length) {
-      const dx = event.changedTouches[0].clientX - touchStart.x;
-      const dy = event.changedTouches[0].clientY - touchStart.y;
-      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) navigate(index + (dx < 0 ? 1 : -1));
-    }
-    touchStart = null;
-    schedule();
-  }, { passive: true });
-  officeCarousel.addEventListener('touchcancel', () => { touchStart = null; schedule(); }, { passive: true });
-  const updateMotion = () => {
-    pauseButton.hidden = motion.matches;
-    schedule();
-  };
-  motion.addEventListener('change', updateMotion);
+  motion.addEventListener('change', schedule);
   document.addEventListener('visibilitychange', schedule);
-  updateMotion();
+  schedule();
 }

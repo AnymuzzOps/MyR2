@@ -1740,3 +1740,32 @@ label, .btn { font-weight: 600; }
 }
 
 .trust .clients-track::-webkit-scrollbar { display: none; }
+
+/* M&R footer: brand, navigation and contact above a separate copyright row. */
+.site-footer { padding: 48px 0 0; background: #0B2F3D; color: #edf4f5; font-size: 15px; line-height: 1.65; }
+.site-footer .footer-columns { display: grid; grid-template-columns: 1.2fr .8fr 1fr; gap: 48px; align-items: start; padding-bottom: 32px; }
+.site-footer .footer-columns > * { min-width: 0; }
+.site-footer .footer-logo { display: inline-flex; align-items: center; min-height: 44px; margin-bottom: 16px; }
+.site-footer .footer-logo img { display: block; width: 112px; height: 112px; object-fit: contain; filter: brightness(0) saturate(100%) invert(54%) sepia(27%) saturate(1223%) hue-rotate(130deg) brightness(91%) contrast(86%); }
+.site-footer .footer-brand-column p { max-width: 360px; font-size: 15px; color: #cbdce1; }
+.site-footer h2 { margin: 0 0 16px; color: var(--white); font-family: var(--font-main); font-size: 16px; font-weight: 600; line-height: 1.4; letter-spacing: normal; }
+.site-footer nav.footer-links { display: block; }
+.site-footer .footer-links ul { margin: 0; padding: 0; list-style: none; }
+.site-footer .footer-links a, .site-footer .footer-contact address a { display: flex; align-items: center; min-height: 44px; color: #edf4f5; overflow-wrap: anywhere; }
+.site-footer .footer-contact address { display: grid; gap: 0; color: inherit; font-size: 15px; font-style: normal; }
+.site-footer .footer-social { margin-top: 12px; }
+.site-footer .footer-social a { width: 44px; height: 44px; }
+.site-footer a:hover { color: var(--teal); }
+.site-footer a:focus-visible { outline: 2px solid var(--teal); outline-offset: 4px; border-radius: 4px; }
+.site-footer .footer-bottom { padding: 20px 0; border-top: 1px solid rgba(237,244,245,.18); }
+.site-footer .footer-bottom p { margin: 0; font-size: 13px; color: #cbdce1; }
+@media (max-width: 800px) {
+  .site-footer .footer-columns { gap: 28px; grid-template-columns: 1fr 1fr; }
+  .site-footer .footer-brand-column { grid-column: 1 / -1; }
+}
+@media (max-width: 680px) {
+  .site-footer { padding-top: 32px; }
+  .site-footer .footer-columns { grid-template-columns: minmax(0, 1fr); gap: 28px; padding-bottom: 28px; }
+  .site-footer .footer-brand-column { grid-column: auto; }
+  .site-footer .footer-logo img { width: 96px; height: 96px; }
+}

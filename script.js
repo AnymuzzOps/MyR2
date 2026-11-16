@@ -170,3 +170,37 @@ if (officeCarousel) {
   document.addEventListener('visibilitychange', schedule);
   schedule();
 }
+
+const clientsTrack = document.querySelector('.clients-track');
+if (clientsTrack) {
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let timer;
+  let hovering = false;
+  let touching = false;
+  let focused = false;
+  const scheduleClients = () => {
+    clearInterval(timer);
+    if (motion.matches || document.hidden || hovering || touching || focused) return;
+    timer = setInterval(() => {
+      const first = clientsTrack.firstElementChild;
+      if (!first) return;
+      const step = first.getBoundingClientRect().width + parseFloat(getComputedStyle(clientsTrack).columnGap);
+      const end = clientsTrack.scrollWidth - clientsTrack.clientWidth;
+      clientsTrack.scrollTo({
+        left: clientsTrack.scrollLeft >= end - 2 ? 0 : Math.min(end, clientsTrack.scrollLeft + step),
+        behavior: 'smooth'
+      });
+    }, 3500);
+  };
+  clientsTrack.addEventListener('mouseenter', () => { hovering = true; scheduleClients(); });
+  clientsTrack.addEventListener('mouseleave', () => { hovering = false; scheduleClients(); });
+  clientsTrack.addEventListener('focusin', () => { focused = true; scheduleClients(); });
+  clientsTrack.addEventListener('focusout', () => { focused = false; scheduleClients(); });
+  clientsTrack.addEventListener('touchstart', () => { touching = true; scheduleClients(); }, { passive: true });
+  const endTouch = () => { touching = false; scheduleClients(); };
+  clientsTrack.addEventListener('touchend', endTouch, { passive: true });
+  clientsTrack.addEventListener('touchcancel', endTouch, { passive: true });
+  document.addEventListener('visibilitychange', scheduleClients);
+  motion.addEventListener('change', scheduleClients);
+  scheduleClients();
+}

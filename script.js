@@ -79,6 +79,38 @@ const counterObserver = new IntersectionObserver(
 document.querySelectorAll('.metric-number').forEach((counter) => counterObserver.observe(counter));
 
 const leadForm = document.querySelector('.lead-form');
+const serviceSelect = leadForm.querySelector('#service');
+const planInterest = leadForm.querySelector('#plan-interest');
+const planNote = leadForm.querySelector('#plan-interest-note');
+const clearPlanInterest = () => {
+  planInterest.value = '';
+  planInterest.disabled = true;
+  planNote.textContent = '';
+  planNote.hidden = true;
+};
+serviceSelect.setAttribute('aria-describedby', 'plan-interest-note');
+document.querySelectorAll('.plans a[data-plan]').forEach((link) => {
+  link.addEventListener('click', (event) => {
+    if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    serviceSelect.value = 'Contabilidad';
+    planInterest.value = link.dataset.plan;
+    planInterest.disabled = false;
+    planNote.textContent = `Plan de interés: ${link.dataset.plan}`;
+    planNote.hidden = false;
+    const target = document.querySelector('#formulario-consulta');
+    target.scrollIntoView({
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+      block: 'center'
+    });
+    serviceSelect.focus({ preventScroll: true });
+  });
+});
+serviceSelect.addEventListener('change', () => {
+  if (serviceSelect.value !== 'Contabilidad') clearPlanInterest();
+});
+leadForm.addEventListener('reset', clearPlanInterest);
+
 leadForm.addEventListener('submit', async (event) => {
   event.preventDefault();
   if (leadForm.getAttribute('aria-busy') === 'true' || !leadForm.reportValidity()) return;

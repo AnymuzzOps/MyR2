@@ -1696,11 +1696,11 @@ label, .btn { font-weight: 600; }
 .lead-form .form-submit:disabled { opacity: 0.65; cursor: wait; transform: none; }
 
 /* Compact complementary services strip within the main services container. */
-.services .complementary-services { margin-top: 24px; padding: 22px 24px; border-radius: 12px; background: #eaf0f2; }
-.services .complementary-services h3 { margin: 0 0 18px; color: var(--navy-900); font-family: var(--font-main); font-size: 18px; line-height: 1.4; font-weight: 600; text-align: center; }
+.services .complementary-services { margin-top: 24px; padding: 22px 24px; border-radius: 12px; background: #E0F2F0; border: 1px solid #C2E1DD; }
+.services .complementary-services h3 { margin: 0 0 18px; color: #0B2F3D; font-family: var(--font-main); font-size: 18px; line-height: 1.4; font-weight: 600; text-align: center; }
 .services .complementary-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; padding: 0; margin: 0; list-style: none; }
-.services .complementary-grid li { display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 0; color: var(--navy-900); text-align: center; }
-.services .complementary-grid svg { flex-shrink: 0; color: var(--teal); }
+.services .complementary-grid li { display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 0; color: #0B2F3D; text-align: center; }
+.services .complementary-grid svg { flex-shrink: 0; color: #087E82; }
 .services .complementary-grid span { max-width: 100%; font-size: 16px; font-weight: 500; line-height: 1.5; }
 @media (max-width: 680px) {
   .services .complementary-services { margin-top: 18px; padding: 20px 12px; }

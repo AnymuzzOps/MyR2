@@ -174,22 +174,37 @@ if (officeCarousel) {
 const clientsTrack = document.querySelector('.clients-track');
 if (clientsTrack) {
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let timer;
+  const originals = [...clientsTrack.children];
+  const copies = originals.map((item) => {
+    const copy = item.cloneNode(true);
+    copy.setAttribute('aria-hidden', 'true');
+    copy.querySelectorAll('img').forEach((img) => { img.alt = ''; });
+    clientsTrack.append(copy);
+    return copy;
+  });
+  let frame;
+  let previousTime;
+  let position = clientsTrack.scrollLeft;
   let touching = false;
   let keyboardFocused = false;
+  const cycleWidth = () => copies[0].getBoundingClientRect().left - originals[0].getBoundingClientRect().left;
+  const tick = (now) => {
+    if (previousTime !== undefined) {
+      position += Math.min(now - previousTime, 64) * 0.018;
+      const cycle = cycleWidth();
+      if (cycle > 0) position %= cycle;
+      clientsTrack.scrollLeft = position;
+    }
+    previousTime = now;
+    frame = requestAnimationFrame(tick);
+  };
   const scheduleClients = () => {
-    clearInterval(timer);
+    cancelAnimationFrame(frame);
+    previousTime = undefined;
+    copies.forEach((copy) => { copy.hidden = motion.matches; });
     if (motion.matches || document.hidden || touching || keyboardFocused) return;
-    timer = setInterval(() => {
-      const first = clientsTrack.firstElementChild;
-      if (!first) return;
-      const step = first.getBoundingClientRect().width + parseFloat(getComputedStyle(clientsTrack).columnGap);
-      const end = clientsTrack.scrollWidth - clientsTrack.clientWidth;
-      clientsTrack.scrollTo({
-        left: clientsTrack.scrollLeft >= end - 2 ? 0 : Math.min(end, clientsTrack.scrollLeft + step),
-        behavior: 'smooth'
-      });
-    }, 3500);
+    position = clientsTrack.scrollLeft;
+    frame = requestAnimationFrame(tick);
   };
   clientsTrack.addEventListener('focusin', () => {
     keyboardFocused = clientsTrack.matches(':focus-visible');
@@ -200,10 +215,8 @@ if (clientsTrack) {
   const endTouch = () => { touching = false; scheduleClients(); };
   clientsTrack.addEventListener('touchend', endTouch, { passive: true });
   clientsTrack.addEventListener('touchcancel', endTouch, { passive: true });
-  document.addEventListener('visibilitychange', () => {
-    touching = false;
-    scheduleClients();
-  });
+  document.addEventListener('visibilitychange', () => { touching = false; scheduleClients(); });
+  window.addEventListener('resize', scheduleClients);
   motion.addEventListener('change', scheduleClients);
   scheduleClients();
 }

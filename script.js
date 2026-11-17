@@ -175,12 +175,11 @@ const clientsTrack = document.querySelector('.clients-track');
 if (clientsTrack) {
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let timer;
-  let hovering = false;
   let touching = false;
-  let focused = false;
+  let keyboardFocused = false;
   const scheduleClients = () => {
     clearInterval(timer);
-    if (motion.matches || document.hidden || hovering || touching || focused) return;
+    if (motion.matches || document.hidden || touching || keyboardFocused) return;
     timer = setInterval(() => {
       const first = clientsTrack.firstElementChild;
       if (!first) return;
@@ -192,15 +191,19 @@ if (clientsTrack) {
       });
     }, 3500);
   };
-  clientsTrack.addEventListener('mouseenter', () => { hovering = true; scheduleClients(); });
-  clientsTrack.addEventListener('mouseleave', () => { hovering = false; scheduleClients(); });
-  clientsTrack.addEventListener('focusin', () => { focused = true; scheduleClients(); });
-  clientsTrack.addEventListener('focusout', () => { focused = false; scheduleClients(); });
+  clientsTrack.addEventListener('focusin', () => {
+    keyboardFocused = clientsTrack.matches(':focus-visible');
+    scheduleClients();
+  });
+  clientsTrack.addEventListener('focusout', () => { keyboardFocused = false; scheduleClients(); });
   clientsTrack.addEventListener('touchstart', () => { touching = true; scheduleClients(); }, { passive: true });
   const endTouch = () => { touching = false; scheduleClients(); };
   clientsTrack.addEventListener('touchend', endTouch, { passive: true });
   clientsTrack.addEventListener('touchcancel', endTouch, { passive: true });
-  document.addEventListener('visibilitychange', scheduleClients);
+  document.addEventListener('visibilitychange', () => {
+    touching = false;
+    scheduleClients();
+  });
   motion.addEventListener('change', scheduleClients);
   scheduleClients();
 }

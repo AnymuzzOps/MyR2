@@ -16,7 +16,7 @@ jobs:
         shell: python
         run: |
           from pathlib import Path
-          import zipfile, hashlib, json
+          import zipfile, hashlib, json, shutil
           root = Path('.')
           files = [Path(p) for p in ('index.html', 'privacidad.html', 'styles.css', 'script.js')]
           files += sorted(p for p in Path('assets').rglob('*') if p.is_file() and p.suffix.lower() in ('.png', '.jpg', '.jpeg', '.webp', '.svg', '.ico', '.woff', '.woff2'))
@@ -25,7 +25,11 @@ jobs:
           assert len(list(Path('assets/clientes').glob('*.jpg'))) == 11
           for p in (Path('index.html'), Path('privacidad.html'), Path('styles.css'), Path('script.js')):
               assert 'anymuzzops.github.io/MyR2' not in p.read_text(), p
-          Path('dist').mkdir()
+          Path('dist/public').mkdir(parents=True)
+          for p in files:
+              target = Path('dist/public') / p
+              target.parent.mkdir(parents=True, exist_ok=True)
+              shutil.copy2(p, target)
           with zipfile.ZipFile('dist/myrconsultores-publico.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
               for p in files:
                   archive.write(p, p.as_posix())
@@ -39,6 +43,6 @@ jobs:
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: myrconsultores-publico
-          path: dist/myrconsultores-publico.zip
+          path: dist/public/
           retention-days: 7
           if-no-files-found: error

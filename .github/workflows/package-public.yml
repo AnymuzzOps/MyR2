@@ -1,0 +1,43 @@
+name: Package public site
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/dominio-paquete-publico-20261122]
+permissions:
+  contents: read
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Build and verify public ZIP
+        shell: python
+        run: |
+          from pathlib import Path
+          import zipfile, hashlib, json
+          root = Path('.')
+          files = [Path(p) for p in ('index.html', 'privacidad.html', 'styles.css', 'script.js')]
+          files += sorted(p for p in Path('assets').rglob('*') if p.is_file() and p.suffix.lower() in ('.png', '.jpg', '.jpeg', '.webp', '.svg', '.ico', '.woff', '.woff2'))
+          assert all(p.stat().st_size for p in files), 'Empty public resource'
+          assert len(list(Path('assets/clientes').glob('*.jpg'))) == 11
+          for p in (Path('index.html'), Path('privacidad.html'), Path('styles.css'), Path('script.js')):
+              assert 'anymuzzops.github.io/MyR2' not in p.read_text(), p
+          Path('dist').mkdir()
+          with zipfile.ZipFile('dist/myrconsultores-publico.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
+              for p in files:
+                  archive.write(p, p.as_posix())
+          with zipfile.ZipFile('dist/myrconsultores-publico.zip') as archive:
+              assert archive.testzip() is None
+              assert 'index.html' in archive.namelist()
+              assert all('README' not in n and not n.startswith('.') for n in archive.namelist())
+          print('Public files:', len(files))
+          print('ZIP bytes:', Path('dist/myrconsultores-publico.zip').stat().st_size)
+          print('SHA256:', hashlib.sha256(Path('dist/myrconsultores-publico.zip').read_bytes()).hexdigest())
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: myrconsultores-publico
+          path: dist/myrconsultores-publico.zip
+          retention-days: 7
+          if-no-files-found: error

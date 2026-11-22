@@ -1034,8 +1034,6 @@ address { gap: 6px; font-size: 11px; }
   .hero { min-height: 0; padding: calc(var(--header-height) + 40px) 0 35px; background-position: 58% center; }
   .hero-grid { grid-template-columns: 1fr; gap: 26px; }
   .hero-copy { font-size: 12px; }
-  .hero-actions { display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; }
-  .hero-actions .btn { width: 100%; padding-inline: 6px; font-size: 8px; }
   .contact-card { padding: 22px 20px 18px; }
   .contact-card h2 { font-size: 20px; }
   .services-grid, .plans-grid, .metrics-grid, .team-grid { grid-template-columns: 1fr; }
@@ -1840,19 +1838,23 @@ label, .btn { font-weight: 600; }
 
 }
 
-/* Equal-height hero buttons remain legible when labels wrap. */
-.hero-actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; align-items: stretch; }
+/* Compact hero actions wrap naturally at their content width. */
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 .hero-actions .btn {
   display: flex;
   align-items: center;
   justify-content: center;
   min-width: 0;
-  min-height: 64px;
-  padding: 12px 14px;
+  width: auto;
+  flex: 0 1 auto;
+  height: 46px;
+  min-height: 46px;
+  max-width: 100%;
+  padding: 10px 16px;
   font-size: 14px;
   line-height: 1.4;
   text-align: center;
-  white-space: normal;
+  white-space: nowrap;
   box-sizing: border-box;
 }
 /* The separate label cannot shrink or distort the circular link. */
@@ -1912,8 +1914,6 @@ label, .btn { font-weight: 600; }
 .whatsapp-widget > .whatsapp-float:focus-visible { outline: 3px solid var(--white); outline-offset: 3px; }
 .site-footer .footer-assist.is-docked .whatsapp-widget { position: relative; right: auto; bottom: auto; z-index: 1; }
 @media (max-width: 680px) {
-  .hero-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-  .hero-actions .btn:first-child { grid-column: 1 / -1; }
   .whatsapp-widget { --help-size: 60px; right: max(12px, env(safe-area-inset-right)); bottom: max(12px, env(safe-area-inset-bottom)); gap: 10px; }
   .whatsapp-widget > .whatsapp-help-label { font-size: 12px; }
 }

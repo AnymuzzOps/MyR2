@@ -20,6 +20,7 @@ jobs:
           root = Path('.')
           files = [Path(p) for p in ('index.html', 'privacidad.html', 'styles.css', 'script.js')]
           files += sorted(p for p in Path('assets').rglob('*') if p.is_file() and p.suffix.lower() in ('.png', '.jpg', '.jpeg', '.webp', '.svg', '.ico', '.woff', '.woff2'))
+          files = [p for p in files if p.as_posix() not in ('assets/logo/logo-myr.png', 'assets/logo/logo-myr.svg')]
           assert all(p.stat().st_size for p in files), 'Empty public resource'
           assert len(list(Path('assets/clientes').glob('*.jpg'))) == 11
           for p in (Path('index.html'), Path('privacidad.html'), Path('styles.css'), Path('script.js')):

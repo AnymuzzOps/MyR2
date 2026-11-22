@@ -266,3 +266,11 @@ if (clientsTrack) {
   scheduleClients();
 }
 
+
+const footerAssist = document.querySelector('.footer-assist');
+if (footerAssist) {
+  const helpDockObserver = new IntersectionObserver(([entry]) => {
+    footerAssist.classList.toggle('is-docked', entry.isIntersecting);
+  });
+  helpDockObserver.observe(footerAssist);
+}

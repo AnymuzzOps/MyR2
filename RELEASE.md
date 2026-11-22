@@ -14,7 +14,7 @@ Revisión del contenido público y árbol completo de la rama main, HTML, CSS, J
 - Contraste mejorado de botones turquesa con texto blanco, foco visible, salto al contenido, movimiento reducido y reparación del ancho de portada en tablet.
 - CTA de diagnóstico al formulario y enlace de mapa unificado con la dirección vigente.
 - Cabecera/footer usan una exportación WebP del logo existente (~25 KB); favicon conserva la ruta SVG con una versión ligera (~9 KB). La apariencia se conserva mediante renderizado del logo, sin redibujarlo. El original permanece en assets/logo/.
-- Metadatos Open Graph/Twitter e imagen JPEG de 1200 × 675 para compartir (~64 KB). Canonical e imagen absoluta usan la URL de Pages confirmada en el último despliegue: https://anymuzzops.github.io/MyR2/.
+- Metadatos Open Graph/Twitter e imagen JPEG de 1200 × 675 para compartir (~64 KB). Canonical e imagen absoluta usan el dominio definitivo indicado por el propietario: https://myrconsultores.cl/.
 - Exclusión de README de recursos, documentación y archivos de desarrollo en la generación de Pages. Se elimina el archivo de prueba vacío `archivo.txt` y el marcador de favicon, ya innecesario. `.gitignore` evita agregar secretos y resultados de desarrollo por accidente.
 
 ## Validación realizada
@@ -30,7 +30,7 @@ No se comprobó la disponibilidad en vivo de redes sociales, redirecciones de ma
 ## Antes de publicar / configuración externa
 
 1. Revisar y fusionar el PR. El último despliegue de Pages observado antes de este PR era satisfactorio. Comprobar que el nuevo despliegue finalice y que Jekyll aplique las exclusiones de `_config.yml` (no usar `.nojekyll` sin una alternativa que excluya documentación).
-2. Confirmar el dominio definitivo. No hay CNAME en el repositorio. Si se configura un dominio corporativo, actualizar canonical, og:url y og:image y comprobar DNS/HTTPS/redirecciones; las rutas de CSS/JS/imágenes son relativas y admiten el subdirectorio actual.
+2. Configurar el dominio definitivo `myrconsultores.cl` en el hosting, DNS y certificado HTTPS. Canonical, og:url y og:image ya apuntan a https://myrconsultores.cl/. Configurar la redirección de www al dominio principal. Las rutas públicas son relativas y el ZIP se extrae en la raíz pública del hosting.
 3. En Formspree, verificar casilla destino, Reply-To desde `email`, dominios permitidos, límites de uso, filtros antispam y conservación/eliminación de consultas. Activar protección adicional de bots si el volumen lo requiere. La validación del navegador y el campo señuelo no sustituyen la validación y limitación en el proveedor.
 4. Prueba manual autorizada con datos ficticios tras publicar: recepción en bandeja y spam y respuesta al correo ficticio/controlado correcto. La aceptación HTTP no acredita llegada a la bandeja de entrada.
 5. Validar con el responsable el aviso de privacidad, plazos de conservación y requisitos de consentimiento para los recursos externos (Google Fonts, Maps y Unsplash). No se inventaron plazos ni políticas de proveedores.

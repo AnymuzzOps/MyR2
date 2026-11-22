@@ -213,12 +213,29 @@ if (clientsTrack) {
   let frame;
   let previousTime;
   let position = clientsTrack.scrollLeft;
+  let speed = 1;
+  let fromSpeed = 1;
+  let targetSpeed = 1;
+  let speedStartedAt = 0;
+  const speedAt = (now) => {
+    const progress = Math.min(Math.max((now - speedStartedAt) / 400, 0), 1);
+    const eased = progress * progress * (3 - 2 * progress);
+    return fromSpeed + (targetSpeed - fromSpeed) * eased;
+  };
   let touching = false;
   let keyboardFocused = false;
   const cycleWidth = () => copies[0].getBoundingClientRect().left - originals[0].getBoundingClientRect().left;
   const tick = (now) => {
+    const requestedSpeed = Number(getComputedStyle(clientsTrack).getPropertyValue('--clients-speed')) || 1;
+    const previousSpeed = speed;
+    speed = speedAt(now);
+    if (requestedSpeed !== targetSpeed) {
+      fromSpeed = speed;
+      targetSpeed = requestedSpeed;
+      speedStartedAt = now;
+    }
     if (previousTime !== undefined) {
-      position += Math.min(now - previousTime, 64) * 0.018;
+      position += Math.min(now - previousTime, 64) * 0.018 * (previousSpeed + speed) / 2;
       const cycle = cycleWidth();
       if (cycle > 0) position %= cycle;
       clientsTrack.scrollLeft = position;

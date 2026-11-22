@@ -413,11 +413,7 @@ select:focus {
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
-.service-card:hover,
-.metric-card:hover,
-.team-card:hover,
-.plan-card:hover {
-  transform: translateY(-8px);
+.metric-card:hover {
   border-color: rgba(201, 164, 97, 0.42);
   box-shadow: var(--shadow);
 }
@@ -570,9 +566,7 @@ select:focus {
   transform: translateY(-14px);
 }
 
-.plan-card.featured:hover {
-  transform: translateY(-20px);
-}
+
 
 .badge {
   align-self: flex-start;
@@ -909,9 +903,7 @@ address strong {
     transform: none;
   }
 
-  .plan-card.featured:hover {
-    transform: translateY(-8px);
-  }
+  
 }
 
 @media (max-width: 680px) {
@@ -1032,7 +1024,7 @@ input, select { min-height: 40px; border-radius: 3px; background: #f3f6f7; font-
 .plans-grid { gap: 20px; }
 .plan-card { min-height: 390px; padding: 27px; border-radius: 11px; box-shadow: none; }
 .plan-card.featured { transform: none; border: 2px solid #ddb55b; }
-.plan-card.featured:hover { transform: translateY(-8px); }
+
 .plan-card h3 { font-size: 13px; }
 .price { margin: 11px 0 18px; padding-bottom: 17px; border-bottom: 1px solid #dfe8ec; font-size: 21px; }
 .plan-card ul { gap: 9px; }
@@ -1800,3 +1792,38 @@ label, .btn { font-weight: 600; }
 .privacy-page h2 { margin: 28px 0 12px; font-size: 22px; }
 .privacy-page p { margin-bottom: 16px; }
 .privacy-page a { color: #087E82; text-decoration: underline; overflow-wrap: anywhere; }
+
+/* Pointer interactions reuse the card transforms without moving team rows. */
+.service-card, .plan-card {
+  transition: transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease, opacity 700ms ease;
+}
+.team, .team > .container, .team-hierarchy, .team-hierarchy .team-grid, .team-hierarchy .team-card { overflow: visible; }
+.team-hierarchy .team-card { position: relative; z-index: 0; }
+.team-hierarchy .team-photo {
+  position: relative;
+  z-index: 1;
+  transform: scale(1);
+  transform-origin: center;
+  outline: 1px solid transparent;
+  outline-offset: 3px;
+  transition: transform 300ms ease, box-shadow 300ms ease, outline-color 300ms ease;
+}
+.team-hierarchy .team-leadership .team-photo { outline-color: var(--teal); }
+@media (hover: hover) and (pointer: fine) {
+  .service-card:hover, .plan-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(4, 31, 42, 0.12);
+  }
+  .team-hierarchy .team-card:hover { z-index: 2; }
+  .team-hierarchy .team-card:hover .team-photo {
+    z-index: 3;
+    transform: scale(1.18);
+    outline-color: var(--teal);
+    box-shadow: 0 8px 18px rgba(4, 31, 42, 0.18);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .service-card, .plan-card, .team-hierarchy .team-photo { transition: none; }
+  .service-card:hover, .plan-card:hover { transform: none; }
+  .team-hierarchy .team-card:hover .team-photo { transform: none; }
+}

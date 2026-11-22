@@ -1794,7 +1794,7 @@ label, .btn { font-weight: 600; }
 .privacy-page a { color: #087E82; text-decoration: underline; overflow-wrap: anywhere; }
 
 /* Pointer interactions reuse the card transforms without moving team rows. */
-.service-card, .plan-card {
+.lift-card {
   transition: transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease, opacity 700ms ease;
 }
 .team, .team > .container, .team-hierarchy, .team-hierarchy .team-grid, .team-hierarchy .team-card { overflow: visible; }
@@ -1810,7 +1810,7 @@ label, .btn { font-weight: 600; }
 }
 .team-hierarchy .team-leadership .team-photo { outline-color: var(--teal); }
 @media (hover: hover) and (pointer: fine) {
-  .service-card:hover, .plan-card:hover {
+  .lift-card:hover, .trust .metric-card.lift-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 28px rgba(4, 31, 42, 0.12);
   }
@@ -1823,7 +1823,44 @@ label, .btn { font-weight: 600; }
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .service-card, .plan-card, .team-hierarchy .team-photo { transition: none; }
-  .service-card:hover, .plan-card:hover { transform: none; }
+  .lift-card, .team-hierarchy .team-photo { transition: none; }
+  .lift-card:hover, .trust .metric-card.lift-card:hover { transform: none; }
   .team-hierarchy .team-card:hover .team-photo { transform: none; }
+}
+
+/* Complementary cards and result indicators share the existing lift interaction. */
+.services .complementary-services { padding: 0; border: 0; background: transparent; }
+.services .complementary-grid .complementary-card {
+  padding: 22px 14px;
+  border: 1px solid rgba(8, 47, 61, 0.18);
+  border-radius: 12px;
+  background: var(--white);
+}
+.services .complementary-grid svg { width: 24px; height: 24px; }
+.trust .metrics-grid { overflow: visible; }
+.trust .metric-card { position: relative; }
+.trust .metric-card:hover { z-index: 1; }
+.whatsapp-float {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  min-height: 64px;
+  padding: 0;
+  border-radius: 50%;
+  background: #128c4a;
+  color: var(--white);
+  box-shadow: 0 8px 24px rgba(0,0,0,.2);
+  right: max(20px, env(safe-area-inset-right));
+  bottom: max(20px, env(safe-area-inset-bottom));
+}
+.whatsapp-float .whatsapp-icon { width: 32px; height: 32px; }
+.whatsapp-float:focus-visible { outline: 3px solid var(--white); outline-offset: 3px; }
+.site-footer .footer-bottom { padding-bottom: 100px; }
+.site-footer .footer-credit { margin-top: 8px; font-size: 12px; line-height: 1.6; }
+.site-footer .footer-credit a { display: inline-block; color: #8dd9d5; text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 680px) {
+  .whatsapp-float { width: 60px; height: 60px; min-height: 60px; right: max(16px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom)); }
+  .services .complementary-grid .complementary-card { padding: 18px 8px; }
 }

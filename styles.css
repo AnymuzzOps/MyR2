@@ -1849,7 +1849,7 @@ label, .btn { font-weight: 600; }
   min-height: 64px;
   padding: 0;
   border-radius: 50%;
-  background: #128c4a;
+  background: var(--teal);
   color: var(--white);
   box-shadow: 0 8px 24px rgba(0,0,0,.2);
   right: max(20px, env(safe-area-inset-right));
@@ -1857,9 +1857,9 @@ label, .btn { font-weight: 600; }
 }
 .whatsapp-float .whatsapp-icon { width: 32px; height: 32px; }
 .whatsapp-float:focus-visible { outline: 3px solid var(--white); outline-offset: 3px; }
-.site-footer .footer-bottom { padding-bottom: 100px; }
-.site-footer .footer-credit { margin-top: 8px; font-size: 12px; line-height: 1.6; }
-.site-footer .footer-credit a { display: inline-block; color: #8dd9d5; text-decoration: underline; text-underline-offset: 3px; }
+
+.site-footer .footer-credit { margin: 0; font-size: 12px; line-height: 1.6; }
+.site-footer .footer-credit a { display: inline-block; color: #8dd9d5; text-decoration: none; }
 @media (max-width: 680px) {
   .whatsapp-float { width: 60px; height: 60px; min-height: 60px; right: max(16px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom)); }
   .services .complementary-grid .complementary-card { padding: 18px 8px; }
@@ -1873,3 +1873,59 @@ label, .btn { font-weight: 600; }
 @media (prefers-reduced-motion: reduce) {
   .trust .clients-track { --clients-speed: 1; }
 }
+
+/* The floating help docks above its credit when the footer row comes into view. */
+.site-footer .footer-bottom {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  align-items: end;
+  gap: 20px;
+  padding: 16px 0;
+}
+.site-footer .footer-assist {
+  display: grid;
+  justify-items: end;
+  align-content: end;
+  gap: 8px;
+  min-height: 92px;
+}
+.site-footer .footer-assist .footer-credit { padding-right: 12px; text-align: right; }
+.site-footer .footer-assist.is-docked .whatsapp-float {
+  position: relative;
+  right: auto;
+  bottom: auto;
+  z-index: 1;
+}
+.whatsapp-float .whatsapp-help-label {
+  position: absolute;
+  right: calc(100% + 12px);
+  display: block;
+  width: max-content;
+  height: auto;
+  padding: 7px 11px;
+  border-radius: 8px;
+  background: #F2F5F6;
+  color: #0B2F3D;
+  box-shadow: 0 3px 12px rgba(4,31,42,.12);
+  font-family: var(--font-main);
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 500;
+  pointer-events: none;
+}
+.whatsapp-float .whatsapp-help-label::after {
+  content: "";
+  position: absolute;
+  right: -5px;
+  top: calc(50% - 5px);
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid #F2F5F6;
+}
+@media (max-width: 680px) {
+  .site-footer .footer-bottom { grid-template-columns: minmax(0, 1fr); gap: 8px; padding: 12px 0 max(12px, env(safe-area-inset-bottom)); }
+  .site-footer .footer-assist { min-height: 88px; gap: 6px; }
+  .whatsapp-float .whatsapp-help-label { font-size: 12px; right: calc(100% + 10px); }
+}
+
+.site-footer .whatsapp-float, .site-footer .whatsapp-float:hover { color: var(--white); }

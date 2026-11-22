@@ -48,6 +48,10 @@ document.querySelectorAll('.reveal').forEach((element) => revealObserver.observe
 
 const animateCounter = (counter) => {
   const target = Number(counter.dataset.count);
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    counter.textContent = `+${target}`;
+    return;
+  }
   const duration = 1400;
   const start = performance.now();
 
@@ -111,12 +115,30 @@ serviceSelect.addEventListener('change', () => {
 });
 leadForm.addEventListener('reset', clearPlanInterest);
 
+const nameInput = leadForm.elements.namedItem('name');
+const phoneInput = leadForm.elements.namedItem('phone');
+const validateContact = () => {
+  nameInput.setCustomValidity(nameInput.value.trim().length < 2 ? 'Escribe tu nombre (al menos dos caracteres).' : '');
+  const digits = phoneInput.value.replace(/\D/g, '');
+  const validPhone = /^\+?[0-9\s().-]+$/.test(phoneInput.value.trim()) && digits.length >= 7 && digits.length <= 15;
+  phoneInput.setCustomValidity(validPhone ? '' : 'Escribe un teléfono válido con entre 7 y 15 dígitos.');
+};
+nameInput.addEventListener('input', validateContact);
+phoneInput.addEventListener('input', validateContact);
+
 leadForm.addEventListener('submit', async (event) => {
   event.preventDefault();
-  if (leadForm.getAttribute('aria-busy') === 'true' || !leadForm.reportValidity()) return;
+  if (leadForm.getAttribute('aria-busy') === 'true') return;
+  validateContact();
+  if (!leadForm.reportValidity()) return;
 
   const submitButton = leadForm.querySelector('.form-submit');
   const status = leadForm.querySelector('.form-status');
+  if (leadForm.elements.namedItem('_gotcha').value) {
+    status.hidden = false;
+    status.textContent = 'No pudimos procesar la consulta. Revisa los datos y vuelve a intentarlo.';
+    return;
+  }
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 20000);
   submitButton.disabled = true;
@@ -127,7 +149,11 @@ leadForm.addEventListener('submit', async (event) => {
   try {
     const response = await fetch(leadForm.action, {
       method: 'POST',
-      body: new FormData(leadForm),
+      body: (() => {
+        const data = new FormData(leadForm);
+        for (const key of ['name', 'email', 'phone']) data.set(key, String(data.get(key)).trim());
+        return data;
+      })(),
       headers: { Accept: 'application/json' },
       signal: controller.signal
     });
@@ -136,6 +162,8 @@ leadForm.addEventListener('submit', async (event) => {
 
     status.textContent = 'Recibimos tu consulta';
     leadForm.reset();
+    nameInput.setCustomValidity('');
+    phoneInput.setCustomValidity('');
   } catch (error) {
     status.textContent = error.name === 'AbortError'
       ? 'No pudimos confirmar la recepción a tiempo. Tus datos se conservaron; puedes reintentar.'
@@ -220,3 +248,4 @@ if (clientsTrack) {
   motion.addEventListener('change', scheduleClients);
   scheduleClients();
 }
+

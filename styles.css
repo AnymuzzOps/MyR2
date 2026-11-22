@@ -983,7 +983,7 @@ address strong {
   }
 }
 
-/* Reference-led visual refinement: compact editorial proportions and square corporate detailing. */
+/* Compact proportions and corporate detailing. */
 :root { --radius: 12px; --header-height: 96px; }
 body { overflow-x: hidden; color: #062d38; font-size: 13px; }
 .container { width: min(1240px, calc(100% - 64px)); }
@@ -1771,3 +1771,32 @@ label, .btn { font-weight: 600; }
 }
 
 .trust .clients-track [hidden] { display: none; }
+
+
+/* Delivery fixes: visible focus, readable contrast and small-screen containment. */
+.skip-link { position: fixed; top: 8px; left: 8px; z-index: 2000; padding: 12px 16px; background: var(--white); color: var(--navy-900); transform: translateY(-180%); }
+.skip-link:focus { transform: none; }
+.form-honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.form-note a { text-decoration: underline; }
+.eyebrow.dark { color: #087E82; }
+.nav-cta, .contact-card .btn-primary, .map-link { background: #087E82; }
+:where(a, button, input, select):focus-visible { outline: 3px solid #087E82; outline-offset: 3px; }
+.hero-grid > *, .split-grid > *, .contact-grid > * { min-width: 0; }
+#formulario-consulta { scroll-margin-top: calc(var(--header-height) + 16px); }
+@media (min-width: 681px) and (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+@media (max-width: 680px) {
+  .hero-actions .btn { min-height: 44px; }
+  .nav-menu a { min-height: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .service-card, .team-card, .plan-card, .metric-card, .btn { transition: none; }
+}
+.privacy-page { max-width: 800px; padding-block: 48px; }
+.privacy-page h1 { max-width: none; margin: 32px 0 20px; color: var(--navy-900); font-size: clamp(28px, 5vw, 40px); }
+.privacy-page h2 { margin: 28px 0 12px; font-size: 22px; }
+.privacy-page p { margin-bottom: 16px; }
+.privacy-page a { color: #087E82; text-decoration: underline; overflow-wrap: anywhere; }

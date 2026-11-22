@@ -222,7 +222,6 @@ if (clientsTrack) {
     const eased = progress * progress * (3 - 2 * progress);
     return fromSpeed + (targetSpeed - fromSpeed) * eased;
   };
-  let touching = false;
   let keyboardFocused = false;
   const cycleWidth = () => copies[0].getBoundingClientRect().left - originals[0].getBoundingClientRect().left;
   const tick = (now) => {
@@ -247,7 +246,7 @@ if (clientsTrack) {
     cancelAnimationFrame(frame);
     previousTime = undefined;
     copies.forEach((copy) => { copy.hidden = motion.matches; });
-    if (motion.matches || document.hidden || touching || keyboardFocused) return;
+    if (motion.matches || document.hidden || keyboardFocused) return;
     position = clientsTrack.scrollLeft;
     frame = requestAnimationFrame(tick);
   };
@@ -256,11 +255,7 @@ if (clientsTrack) {
     scheduleClients();
   });
   clientsTrack.addEventListener('focusout', () => { keyboardFocused = false; scheduleClients(); });
-  clientsTrack.addEventListener('touchstart', () => { touching = true; scheduleClients(); }, { passive: true });
-  const endTouch = () => { touching = false; scheduleClients(); };
-  clientsTrack.addEventListener('touchend', endTouch, { passive: true });
-  clientsTrack.addEventListener('touchcancel', endTouch, { passive: true });
-  document.addEventListener('visibilitychange', () => { touching = false; scheduleClients(); });
+  document.addEventListener('visibilitychange', scheduleClients);
   window.addEventListener('resize', scheduleClients);
   motion.addEventListener('change', scheduleClients);
   scheduleClients();
@@ -273,4 +268,24 @@ if (footerAssist) {
     footerAssist.classList.toggle('is-docked', entry.isIntersecting);
   });
   helpDockObserver.observe(footerAssist);
+}
+
+const helpWidget = document.querySelector('.whatsapp-widget');
+if (helpWidget) {
+  const contactForm = document.querySelector('.lead-form');
+  const updateHelpVisibility = () => {
+    const isSmall = window.matchMedia('(max-width: 680px)').matches;
+    const formIsFocused = contactForm && contactForm.contains(document.activeElement);
+    const formBounds = contactForm?.getBoundingClientRect();
+    const formOnScreen = formBounds && formBounds.bottom > 0 && formBounds.top < window.innerHeight;
+    helpWidget.hidden = Boolean(isSmall && (formIsFocused || formOnScreen));
+  };
+  contactForm?.addEventListener('focusin', updateHelpVisibility);
+  contactForm?.addEventListener('focusout', () => requestAnimationFrame(updateHelpVisibility));
+  if (contactForm) {
+    const formVisibilityObserver = new IntersectionObserver(updateHelpVisibility);
+    formVisibilityObserver.observe(contactForm);
+  }
+  window.addEventListener('resize', updateHelpVisibility);
+  updateHelpVisibility();
 }

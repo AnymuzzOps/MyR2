@@ -1,0 +1,13 @@
+# Keep repository documentation and development files out of GitHub Pages.
+exclude:
+  - README.md
+  - RELEASE.md
+  - SECURITY.md
+  - tests
+  - work
+  - archivo.txt
+  - assets/banner/README.md
+  - assets/clientes/README.md
+  - assets/equipo/README.md
+  - assets/logo/README.md
+  - assets/oficina-virtual/README.md
